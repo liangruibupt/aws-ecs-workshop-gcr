@@ -147,7 +147,13 @@ aws ecs create-service --cluster windows-demo --task-definition windows-simple-i
 
 ## Step 6 cleanup
 ```
-
+aws ecs delete-service --cluster windows-demo --service windows-simple-iis-svc --region cn-northwest-1
+aws ecs list-container-instances --cluster windows-demo --region cn-northwest-1
+aws ecs deregister-container-instance --cluster windows-demo \
+    --container-instance <containerInstanceArn> \
+    --force --region cn-northwest-1
+aws ecs delete-cluster --cluster windows-demo --region cn-northwest-1
+aws ec2 terminate-instances --instance-ids <ec2-instance-id> --region cn-northwest-1
 ```
 ## Production reference architecture
 [Deploying Microservices with Amazon ECS, AWS CloudFormation, and an Application Load Balancer](https://github.com/aws-samples/ecs-refarch-cloudformation-windows)
