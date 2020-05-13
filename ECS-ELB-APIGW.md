@@ -37,6 +37,8 @@ API GW - NLB - ECS (both for dynamic or static port)
 
 API GW - NLB - ALB - ECS (both for dynamic or static port)
 
+The ECS cluster can be private while NLB + ALB are interal-facing, private link as integration
+
 ## Demo
 ### Create Docker images
 1. blog.py
@@ -163,7 +165,6 @@ The ECS cluster can be private while ALB is internet-facing
 ![apigw-integrate-blog](media/apigw-integrate-blog.png)
 
 ![apigw-resources](media/apigw-resources.png)
-
 
 3. Testing
 ```bash
