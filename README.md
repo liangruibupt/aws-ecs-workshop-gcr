@@ -30,6 +30,7 @@ Amazon ECS can be used to run microservices workloads, scale batch jobs， machi
 - [Fargate CDK Demo](ECS-Workshop-cdk.md)
 - [ECS with load balance and API Gateway for microservices](ECS-ELB-APIGW.md)
 - [How can I create an Application Load Balancer and then register Amazon ECS tasks automatically](ECS-ALB-Dynamic-Port.md)
+- [Stateful workloads on ECS Fargate - persistent storage on EFS](Persitent-Storeage-On-EFS.md)
 
 ## Resource
 [ECS Offical Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html)
