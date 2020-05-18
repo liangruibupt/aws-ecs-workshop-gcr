@@ -53,7 +53,7 @@ aws iam get-role --role-name "AWSServiceRoleForECS" --region ${AWS_REGION} || aw
 
 ```bash
 cd ~/workspace/ecs-workshop-gcr
-git clone git@github.com:liangruibupt/aws-ecs-workshop-gcr.git
+git clone https://github.com/liangruibupt/aws-ecs-workshop-gcr
 # Option1: by aws cli
 npm i -g c9
 # modify cluster-fargate-private-vpc.yml based on your environment and deploy
@@ -61,9 +61,6 @@ c9 open script/cluster-fargate-private-vpc.yml
 aws cloudformation deploy --stack-name container-demo --template-file script/cluster-fargate-private-vpc.yml --capabilities CAPABILITY_IAM --region ${AWS_REGION}
 
 # modify alb-external.yml based on your environment and deploy
-c9 open script/alb-external.yml
-aws cloudformation deploy --stack-name container-demo-alb --template-file script/alb-external.yml --region ${AWS_REGION}
-
 c9 open script/alb-external.yml
 aws cloudformation deploy --stack-name container-demo-alb --template-file script/alb-external.yml --region ${AWS_REGION}
 ```
