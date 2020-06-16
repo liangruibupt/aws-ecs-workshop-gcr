@@ -1,0 +1,29 @@
+{
+    "family": "php-info",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "php-info",
+            "image": "876820548815.dkr.ecr.cn-northwest-1.amazonaws.com.cn/phpinfo:latest",
+            "essential": true
+        },
+        {
+            "name": "php_webserver",
+            "image": "876820548815.dkr.ecr.cn-northwest-1.amazonaws.com.cn/php_webserver:latest",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "executionRoleArn": "arn:aws-cn:iam::876820548815:role/ecsTaskExecutionRole",
+    "cpu": "512",
+    "memory": "1024"
+}

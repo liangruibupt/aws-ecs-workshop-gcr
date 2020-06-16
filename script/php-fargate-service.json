@@ -1,0 +1,24 @@
+{
+	"serviceName": "php-fargate-service",
+	"taskDefinition": "php-info:2",
+	"launchType": "FARGATE",
+	"networkConfiguration": {
+		"awsvpcConfiguration": {
+			"subnets": [
+				"subnet-0e969ac619a9ba026",
+				"subnet-0f55049cbe41e0cf2",
+				"subnet-0e82b20639afb7fbd"
+			],
+			"securityGroups": [
+				"sg-0cc2f134c6d1c2070"
+			]
+		}},
+
+		"loadBalancers": [{
+				"targetGroupArn": "arn:aws-cn:elasticloadbalancing:cn-northwest-1:876820548815:targetgroup/php-info-fargate-tg/b412cfd9baf6e4cf",
+				"containerName": "php_webserver",
+				"containerPort": 80
+			}
+		],
+		"desiredCount": 2
+}

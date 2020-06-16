@@ -36,7 +36,7 @@ Amazon Container Serivces Landscape
 - [ECS with load balance and API Gateway for microservices](ECS-ELB-APIGW.md)
 - [How can I create an Application Load Balancer and then register Amazon ECS tasks automatically](ECS-ALB-Dynamic-Port.md)
 - [Stateful workloads on ECS Fargate - persistent storage on EFS](Persitent-Storeage-On-EFS.md)
-
+- [Fargate PHP example](Fargate-PHP-example.md)
 ## Resource
 
 [ECS Offical Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html)
