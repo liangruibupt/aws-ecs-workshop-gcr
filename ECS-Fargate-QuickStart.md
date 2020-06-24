@@ -19,7 +19,7 @@ The architecture containers 3 micro services:
 
 ## Install Fargate CLI
 
-Fargate CLI right now do not support China region, please refer below issue: https://github.com/awslabs/fargatecli/issues/110
+The latest Fargate CLI right now support China region, please refer below issue: https://github.com/awslabs/fargatecli/issues/110
 
 The workshop commands are executed on Cloud9 IDE launched from AWS China Marketplace
 
@@ -37,7 +37,7 @@ $ fargate version 0.3.0
 
 ## Create the Front-end order service
 ```bash
-export AWS_REGION=ap-northeast-1
+export AWS_REGION=cn-northwest-1
 # create external-lb for order service in public subnets
 fargate lb create order-lb --port 80 \
 --subnet-id subnet-pub-1,subnet-pub-2,subnet-pub-3 \
@@ -45,7 +45,7 @@ fargate lb create order-lb --port 80 \
 [i] Created load balancer order-lb
 # list the lb
 fargate lb list | grep order-lb
-order-lb        Application     Active  order-lb-500766783.ap-northeast-1.elb.amazonaws.com     HTTP:80
+order-lb        Application     Active  order-lb-500766783.cn-northwest-1.elb.amazonaws.com     HTTP:80
 # create the order service in the private subnets
 fargate service create order --lb order-lb --image pahud/aws-container-workshop-service:latest \
 --env SERVICENAME=order --env VERSIONNUM=1.0 --port http:8080 \
@@ -105,11 +105,11 @@ fargate service info ticket
 ```bash
 # craete a private hosted zone "demo.local"
 aws route53 create-hosted-zone --name demo.local \
---vpc VPCRegion=ap-northeast-1,VPCId=<VPC_ID> --caller-reference ="$(date)" --hosted-zone-config PrivateZone=true
+--vpc VPCRegion=cn-northwest-1,VPCId=<VPC_ID> --caller-reference ="$(date)" --hosted-zone-config PrivateZone=true
 
 # Optional - associate to more VPCs in the same region
 aws route53 associate-vpc-with-hosted-zone --hosted-zone-id YOUR_ZONE_ID  \
---vpc VPCRegion=ap-northeast-1,VPCId=<VPC_ID_2>
+--vpc VPCRegion=cn-northwest-1,VPCId=<VPC_ID_2>
 ```
 
 ### create 2 aliases for cms.demo.local and ticket.demo.local to the dns name of priv-lb.
@@ -125,7 +125,7 @@ aws route53 change-resource-record-sets --hosted-zone-id YOUR_ZONE_ID  --change-
                             "Type": "A",
                             "AliasTarget":{
                                     "HostedZoneId": "Z14GRHDCWA56QT",
-                                    "DNSName": "internal-priv-lb-1149407287.ap-northeast-1.elb.amazonaws.com",
+                                    "DNSName": "internal-priv-lb-1149407287.cn-northwest-1.elb.amazonaws.com",
                                     "EvaluateTargetHealth": false
                               }}
                 }]
@@ -141,7 +141,7 @@ aws route53 change-resource-record-sets --hosted-zone-id YOUR_ZONE_ID --change-b
                             "Type": "A",
                             "AliasTarget":{
                                     "HostedZoneId": "Z14GRHDCWA56QT",
-                                    "DNSName": "internal-priv-lb-1149407287.ap-northeast-1.elb.amazonaws.com",
+                                    "DNSName": "internal-priv-lb-1149407287.cn-northwest-1.elb.amazonaws.com",
                                     "EvaluateTargetHealth": false
                               }}
                 }]
@@ -198,7 +198,7 @@ fargate lb destroy order-lb
 fargate lb destroy priv-lb
 
 # DNS zone sets in demo.local and delete the private hosted zone from Route53
-aws route53 disassociate-vpc-from-hosted-zone --hosted-zone-id YOUR_ZONE_ID --vpc VPCRegion=ap-northeast-1,VPCId=<VPC_ID>
+aws route53 disassociate-vpc-from-hosted-zone --hosted-zone-id YOUR_ZONE_ID --vpc VPCRegion=cn-northwest-1,VPCId=<VPC_ID>
 aws route53 change-resource-record-sets --hosted-zone-id YOUR_ZONE_ID  --change-batch file://cms-alias.json
 aws route53 change-resource-record-sets --hosted-zone-id YOUR_ZONE_ID  --change-batch file://ticket-alias.json
 aws route53 delete-hosted-zone --id YOUR_ZONE_ID 
